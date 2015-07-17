@@ -175,6 +175,15 @@ class RDMfrozenNoise():
         ax.set_xticklabels(['frozen noise', 'variable noise'])
         ax.set_xlim(xl)
 
+        dist = 0.15
+        print "# blocks with mean fraction more than %4.2f from 0.5:" % (dist,)
+        nfro = float((np.abs(cfro[:, 0] - 0.5) > dist).sum())
+        print "frozen noise: %d / %d = %4.2f" % (nfro, cfro.shape[0],
+                                                 nfro / cfro.shape[0])
+        nvar = float((np.abs(cvar[:, 0] - 0.5) > dist).sum())
+        print "variable noise: %d / %d = %4.2f" % (nvar, cvar.shape[0],
+                                                   nvar / cvar.shape[0])
+
         return ax
 
 
